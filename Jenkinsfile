@@ -39,7 +39,7 @@ pipeline {
                             junit testResults: 'reports/junit.xml'
                         }
                     }
-                    archiveArtifacts artifacts: 'reports/**/*,logs/**/*,screenshots/**/*,allure-results/**/*', allowEmptyArchive: true
+                    archiveArtifacts artifacts: 'reports/**/*,logs/**/*,screenshots/**/*,allure-results/**/*', excludes: '**/*element.png', allowEmptyArchive: true
                     publishHTML(target: [
                         allowMissing: true,
                         alwaysLinkToLastBuild: true,
