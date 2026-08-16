@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# IDE
+.idea/
+.vscode/
+
+# 虚拟环境
+.venv/
+venv/
+env/
+
+# 测试产物
+logs/*
+!logs/.gitkeep
+reports/*
+!reports/.gitkeep
+screenshots/*
+!screenshots/.gitkeep
+allure-results/
+!allure-results/.gitkeep
+allure-results-register/
+allure-report/
+scripts/reports/

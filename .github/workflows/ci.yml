@@ -1,0 +1,37 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  browser-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Setup Chrome
+        uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: stable
+          install-chromedriver: true
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Compile Python files
+        run: python -m compileall config pages utils tests scripts
+      - name: Run browser tests
+        env:
+          HEADLESS: "true"
+        run: python -m pytest
+      - name: Upload test artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-artifacts
+          path: |
+            reports/
+            logs/
+            screenshots/
+            allure-results/

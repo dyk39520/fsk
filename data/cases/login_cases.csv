@@ -1,0 +1,5 @@
+case,username,password,expected_result,execute
+正确账号密码登录,3026288915@qq.com,A123456,success,TRUE
+密码错误,3026288915@qq.com,WrongPassword123,fail,TRUE
+邮箱格式错误,invalid-email,A123456,fail,TRUE
+空密码,3026288915@qq.com,,fail,TRUE
