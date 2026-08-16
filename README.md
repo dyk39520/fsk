@@ -30,6 +30,8 @@ AI 辅助生成测试用例的 Skill 说明和 Prompt 示例放在 `ai-testing/`
 
 生成测试用例时，默认同时输出 CSV 和 XLSX，两套文件使用相同表头，并在“设计方法”列标注等价类划分、边界值分析、判定表、状态迁移、错误猜测、场景法。
 
+AI 已按 `ai-testing/skills/core-business-testing.md` 完成核心业务自动化闭环，核心业务 Prompt 见 `ai-testing/prompts/generate-core-business-cases.md`。
+
 ## 当前测试用例
 
 当前已纳入仓库的交付用例：
@@ -41,6 +43,40 @@ AI 辅助生成测试用例的 Skill 说明和 Prompt 示例放在 `ai-testing/`
 
 - 登录：`data/cases/login_cases.csv`、`data/cases/login_cases.xlsx`
 - 注册：`data/cases/register_cases.csv`、`data/cases/register_cases.xlsx`
+
+## 核心业务测试范围
+
+核心业务定义为两条主链路：
+
+1. 预约：服务选择、日期时间步骤、预约确认。
+2. 商城成交：商品搜索、商品详情、加购、会员结算门禁。
+
+登录/注册属于支撑链路，已有独立用例，不重复扩张。咨询表单功能已从核心范围移除。
+
+当前核心业务用例文件：
+
+- `核心业务测试用例_最终.csv`
+- `核心业务测试用例_最终.xlsx`
+
+执行核心业务测试：
+
+```bash
+python -m pytest -m core
+```
+
+只跑某个模块：
+
+```bash
+python -m pytest -m store
+python -m pytest -m booking
+python -m pytest -m payment
+```
+
+重新生成核心业务用例交付文件：
+
+```bash
+python -m scripts.generate_core_business_cases
+```
 
 ## 环境准备
 

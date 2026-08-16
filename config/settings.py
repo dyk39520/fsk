@@ -15,6 +15,15 @@ INITIAL_URL = os.getenv("INITIAL_URL", "https://www.baidu.com")
 IMPLICIT_WAIT = int(os.getenv("IMPLICIT_WAIT", "10"))
 DEFAULT_TIMEOUT = int(os.getenv("DEFAULT_TIMEOUT", "10"))
 
+# 业务站点配置
+SITE_URL = os.getenv("SITE_URL", "https://web21.posify.me/fskinandlasersit@9.3.01.2403.0625.21")
+PRODUCT_URL = os.getenv(
+    "PRODUCT_URL",
+    SITE_URL + "/products/Laser+hair+removal+-+Brazilian",
+)
+BOOKING_URL = os.getenv("BOOKING_URL", SITE_URL + "/page/booking")
+CHECKOUT_URL = os.getenv("CHECKOUT_URL", SITE_URL + "/checkout")
+
 # 登录页面配置
 LOGIN_URL = os.getenv("LOGIN_URL", "https://web21.posify.me/fskinandlasersit@9.3.01.2403.0625.21/sc/account/login")
 REGISTER_URL = os.getenv("REGISTER_URL", LOGIN_URL + "?register=yes")
@@ -45,4 +54,8 @@ LOGIN_CASES_FILE = os.getenv(
 REGISTER_CASES_FILE = os.getenv(
     "REGISTER_CASES_FILE",
     str(CASE_FILES_DIR / "register_cases.xlsx"),
+)
+CORE_CASES_FILE = os.getenv(
+    "CORE_CASES_FILE",
+    str(CASE_FILES_DIR / "core_business_cases.csv"),
 )

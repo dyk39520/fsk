@@ -4,6 +4,8 @@ import re
 from datetime import datetime
 from pathlib import Path
 
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
@@ -51,6 +53,34 @@ class BasePage(object):
     def base_click(self, loc):
         """等待元素可见后执行点击。"""
         self.find_element(loc).click()
+
+    def base_press_enter(self, loc):
+        """等待元素可见后按下回车。"""
+        self.find_element(loc).send_keys(Keys.ENTER)
+
+    def click_via_js(self, loc):
+        """对可点击但可能被遮罩/移出视口的元素执行 JS 点击。"""
+        element = WebDriverWait(self.driver, self.default_timeout).until(
+            EC.presence_of_element_located(loc)
+        )
+        self.driver.execute_script("arguments[0].click();", element)
+        return self
+
+    def wait_for_text(self, text, timeout=None):
+        """等待页面 body 中出现指定文本。"""
+        WebDriverWait(self.driver, timeout or self.default_timeout).until(
+            lambda driver: text in driver.find_element(By.TAG_NAME, "body").text,
+            message=f"页面未出现文本: {text}",
+        )
+        return self
+
+    def wait_for_url_contains(self, text, timeout=None):
+        """等待当前 URL 包含指定片段。"""
+        WebDriverWait(self.driver, timeout or self.default_timeout).until(
+            lambda driver: text in driver.current_url,
+            message=f"URL 未包含: {text}",
+        )
+        return self
 
     def save_screenshot(self, file_path=None):
         """将当前页面截图保存到指定路径；未传路径时保存到 screenshots 目录。"""

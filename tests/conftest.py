@@ -10,6 +10,9 @@ from selenium.webdriver.common.by import By
 
 from config import LOG_DIR, SCREENSHOTS_DIR, SCREENSHOT_SETTLE_SECONDS
 from pages.login_page import PageLogin
+from pages.booking_page import BookingPage
+from pages.product_page import ProductPage
+from pages.public_home_page import PublicHomePage
 from pages.register_page import RegisterPage
 from utils.logger import RUN_NUMBER, get_logger
 from utils.tools import Tools
@@ -249,4 +252,28 @@ def register_page(driver):
     page = RegisterPage()
     page.open_url()
     page.wait_for_form()
+    return page
+
+
+@pytest.fixture
+def public_home_page(driver):
+    """打开公开首页并返回页面对象。"""
+    page = PublicHomePage()
+    page.open_url()
+    return page
+
+
+@pytest.fixture
+def product_page(driver):
+    """打开商品详情页并返回页面对象。"""
+    page = ProductPage()
+    page.open_url()
+    return page
+
+
+@pytest.fixture
+def booking_page(driver):
+    """打开预约页并返回页面对象。"""
+    page = BookingPage()
+    page.open_url()
     return page

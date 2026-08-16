@@ -6,6 +6,7 @@ __pycache__/
 # IDE
 .idea/
 .vscode/
+.playwright-mcp/
 
 # 虚拟环境
 .venv/

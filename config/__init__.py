@@ -12,8 +12,11 @@ from config.paths import (
 )
 from config.settings import (
     BROWSER,
+    BOOKING_URL,
     CASE_FILES_DIR,
+    CHECKOUT_URL,
     CHROME_DRIVER_PATH,
+    CORE_CASES_FILE,
     DEFAULT_TIMEOUT,
     FIREFOX_BINARY_PATH,
     FIREFOX_DRIVER_PATH,
@@ -36,14 +39,19 @@ from config.settings import (
     REGISTER_URL,
     REGISTER_WAIT_SECONDS,
     SCREENSHOT_SETTLE_SECONDS,
+    SITE_URL,
+    PRODUCT_URL,
 )
 
 __all__ = [
     "ALLURE_REPORT_DIR",
     "ALLURE_RESULTS_DIR",
     "BROWSER",
+    "BOOKING_URL",
+    "CHECKOUT_URL",
     "CASE_FILES_DIR",
     "CHROME_DRIVER_PATH",
+    "CORE_CASES_FILE",
     "DATA_DIR",
     "DEFAULT_TIMEOUT",
     "FIREFOX_BINARY_PATH",
@@ -68,6 +76,8 @@ __all__ = [
     "REGISTER_URL",
     "REGISTER_WAIT_SECONDS",
     "SCREENSHOT_SETTLE_SECONDS",
+    "SITE_URL",
+    "PRODUCT_URL",
     "LOG_DIR",
     "PROJECT_ROOT",
     "REPORTS_DIR",
