@@ -37,7 +37,7 @@ pipeline {
 
     post {
         always {
-            node {
+            node('built-in') {
                 script {
                     if (fileExists('reports/junit.xml')) {
                         junit testResults: 'reports/junit.xml'
