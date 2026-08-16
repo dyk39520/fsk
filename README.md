@@ -12,12 +12,35 @@ Po/
 ├─ tests/           # pytest 测试
 ├─ scripts/         # 脚本
 ├─ data/            # 测试数据
+├─ ai-testing/      # AI Skills 与 Prompt 示例
 ├─ logs/            # 日志
 ├─ reports/         # 测试报告
 ├─ screenshots/     # 失败截图
 ├─ allure-results/  # Allure 结果
 └─ .github/         # CI 配置
 ```
+
+## AI 测试用例生成
+
+AI 辅助生成测试用例的 Skill 说明和 Prompt 示例放在 `ai-testing/` 目录：
+
+- 基础用例编写：`ai-testing/skills/test-case-writing.md`
+- 增强版用例编写：`ai-testing/skills/testcase-writer-plus.md`
+- 注册/登录 Prompt 示例：`ai-testing/prompts/generate-register-login-cases.md`
+
+生成测试用例时，默认同时输出 CSV 和 XLSX，两套文件使用相同表头，并在“设计方法”列标注等价类划分、边界值分析、判定表、状态迁移、错误猜测、场景法。
+
+## 当前测试用例
+
+当前已纳入仓库的交付用例：
+
+- 注册测试用例：`注册测试用例_最终.csv`、`注册测试用例_最终.xlsx`
+- 登录测试用例：`登录测试用例_最终.csv`、`登录测试用例_最终.xlsx`
+
+自动化执行使用的数据驱动源文件仍位于：
+
+- 登录：`data/cases/login_cases.csv`、`data/cases/login_cases.xlsx`
+- 注册：`data/cases/register_cases.csv`、`data/cases/register_cases.xlsx`
 
 ## 环境准备
 
