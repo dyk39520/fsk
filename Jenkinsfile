@@ -6,6 +6,7 @@ pipeline {
     }
 
     environment {
+        ALLURE = 'D:\\2345Downloads\\Software\\allure.cmd'
         HEADLESS = 'true'
         PYTHON = 'D:\\anconda\\python.exe'
     }
@@ -30,10 +31,11 @@ pipeline {
 
         stage('浏览器回归测试') {
             steps {
-                bat ".venv\\Scripts\\python.exe -m pytest --junitxml=reports\\junit.xml"
+                bat ".venv\\Scripts\\python.exe -m scripts.run_tests --junitxml=reports\\junit.xml --clean-alluredir"
             }
             post {
                 always {
+                    bat "if exist allure-results %ALLURE% generate allure-results -o reports\\allure-report --clean"
                     script {
                         if (fileExists('reports/junit.xml')) {
                             junit testResults: 'reports/junit.xml'
@@ -47,6 +49,14 @@ pipeline {
                         reportDir: 'reports',
                         reportFiles: 'report.html',
                         reportName: 'Test Report'
+                    ])
+                    publishHTML(target: [
+                        allowMissing: true,
+                        alwaysLinkToLastBuild: true,
+                        keepAll: true,
+                        reportDir: 'reports/allure-report',
+                        reportFiles: 'index.html',
+                        reportName: 'Allure Report'
                     ])
                 }
             }
