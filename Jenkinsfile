@@ -37,20 +37,22 @@ pipeline {
 
     post {
         always {
-            script {
-                if (fileExists('reports/junit.xml')) {
-                    junit testResults: 'reports/junit.xml'
+            node {
+                script {
+                    if (fileExists('reports/junit.xml')) {
+                        junit testResults: 'reports/junit.xml'
+                    }
                 }
+                archiveArtifacts artifacts: 'reports/**,logs/**,screenshots/**,allure-results/**', allowEmptyArchive: true
+                publishHTML(target: [
+                    allowMissing: true,
+                    alwaysLinkToLastBuild: true,
+                    keepAll: true,
+                    reportDir: 'reports',
+                    reportFiles: 'report.html',
+                    reportName: 'Test Report'
+                ])
             }
-            archiveArtifacts artifacts: 'reports/**,logs/**,screenshots/**,allure-results/**', allowEmptyArchive: true
-            publishHTML(target: [
-                allowMissing: true,
-                alwaysLinkToLastBuild: true,
-                keepAll: true,
-                reportDir: 'reports',
-                reportFiles: 'report.html',
-                reportName: 'Test Report'
-            ])
         }
     }
 }
