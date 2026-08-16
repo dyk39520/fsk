@@ -66,7 +66,6 @@ class BasePage(object):
         safe_label = re.sub(r"[^\w.\-]", "_", label)
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
         png_path = SCREENSHOTS_DIR / f"{safe_label}_{timestamp}.png"
-        element_png_path = SCREENSHOTS_DIR / f"{safe_label}_{timestamp}_element.png"
         try:
             png_path.parent.mkdir(parents=True, exist_ok=True)
             if element is not None:
@@ -79,12 +78,6 @@ class BasePage(object):
                     pass
             self.driver.save_screenshot(str(png_path))
             logger.info("页面证据已保存: %s", png_path)
-            if element is not None:
-                try:
-                    element.screenshot(str(element_png_path))
-                    logger.info("关键元素证据已保存: %s", element_png_path)
-                except Exception as exc:
-                    logger.error("保存关键元素证据失败: %s", exc)
             return str(png_path)
         except Exception as exc:
             logger.error("保存页面证据失败: %s", exc)

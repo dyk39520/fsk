@@ -147,17 +147,9 @@ def _save_failure_key_elements(driver, base_path):
             except Exception:
                 pass
             selector_name = _selector_name(selector)
-            element_path = base_path.with_name(
-                f"{base_path.name}_{selector_name}_{index}_element.png"
-            )
             view_path = base_path.with_name(
                 f"{base_path.name}_{selector_name}_{index}.png"
             )
-            try:
-                element.screenshot(str(element_path))
-                logger.info("失败关键元素截图已保存: %s", element_path)
-            except Exception as exc:
-                logger.error("保存失败关键元素截图时发生异常: %s", exc)
             try:
                 driver.save_screenshot(str(view_path))
                 logger.info("失败关键页面截图已保存: %s", view_path)
