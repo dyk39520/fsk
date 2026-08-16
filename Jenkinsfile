@@ -62,6 +62,18 @@ pipeline {
                         reportFiles: 'index.html',
                         reportName: 'Allure Report'
                     ])
+                    emailext(
+                        to: '3026288915@qq.com',
+                        subject: "[${env.JOB_NAME}] Build #${env.BUILD_NUMBER} ${currentBuild.currentResult ?: 'SUCCESS'} - 测试报告",
+                        body: """
+                            <p>${env.JOB_NAME} Build #${env.BUILD_NUMBER} ${currentBuild.currentResult ?: 'SUCCESS'}</p>
+                            <p><a href="${env.BUILD_URL}">Console Output</a></p>
+                            <p><a href="${env.BUILD_URL}Test_20Report/">HTML Test Report</a></p>
+                            <p><a href="${env.BUILD_URL}Allure_20Report/">Allure Report</a></p>
+                        """,
+                        attachmentsPattern: 'reports/report.html,reports/junit.xml',
+                        mimeType: 'text/html'
+                    )
                 }
             }
         }
