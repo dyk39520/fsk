@@ -1,0 +1,8 @@
+INFO     pytest:conftest.py:233 准备浏览器驱动: 默认配置
+INFO     public_home:public_home_page.py:26 打开公开首页: https://web21.posify.me/fskinandlasersit@9.3.01.2403.0625.21/page/index
+INFO     public_home:public_home_page.py:35 搜索商品: laser
+INFO     page:base_page.py:35 查找元素: ('css selector', "input[placeholder='Search for product...']")
+INFO     page:base_page.py:41 元素已找到: ('css selector', "input[placeholder='Search for product...']")
+INFO     page:base_page.py:35 查找元素: ('css selector', "input[placeholder='Search for product...']")
+INFO     page:base_page.py:41 元素已找到: ('css selector', "input[placeholder='Search for product...']")
+INFO     pytest:conftest.py:238 关闭浏览器驱动

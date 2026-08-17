@@ -1,0 +1,20 @@
+2026-08-17 08:54:19 | INFO | pytest | 开始用例: [4/14] tests\test_payment_checkout.py::test_checkout_payment_method_is_atm_only
+2026-08-17 08:54:19 | INFO | pytest | 准备浏览器驱动: 默认配置
+2026-08-17 08:54:26 | INFO | login | 打开登录页: https://web21.posify.me/fskinandlasersit@9.3.01.2403.0625.21/sc/account/login
+2026-08-17 08:54:35 | INFO | login | 开始执行登录操作
+2026-08-17 08:54:35 | INFO | login | 输入用户名
+2026-08-17 08:54:35 | INFO | page | 查找元素: ('id', 'l-login')
+2026-08-17 08:54:35 | INFO | page | 元素已找到: ('id', 'l-login')
+2026-08-17 08:54:36 | INFO | login | 输入密码
+2026-08-17 08:54:36 | INFO | page | 查找元素: ('id', 'l-password')
+2026-08-17 08:54:36 | INFO | page | 元素已找到: ('id', 'l-password')
+2026-08-17 08:54:36 | INFO | login | 点击登录按钮
+2026-08-17 08:54:36 | INFO | page | 查找元素: ('css selector', 'form#login-form button.login-button')
+2026-08-17 08:54:36 | INFO | page | 元素已找到: ('css selector', 'form#login-form button.login-button')
+2026-08-17 08:54:36 | INFO | login | 等待登录成功并离开登录页
+2026-08-17 08:54:47 | INFO | product | 打开商品详情页: https://web21.posify.me/fskinandlasersit@9.3.01.2403.0625.21/products/Laser+hair+removal+-+Brazilian
+2026-08-17 08:54:51 | INFO | page | 查找元素: ('id', 'action-button')
+2026-08-17 08:54:51 | INFO | page | 元素已找到: ('id', 'action-button')
+2026-08-17 08:54:56 | INFO | product | 登录状态下点击 Proceed Checkout
+2026-08-17 08:55:08 | INFO | pytest | 用例通过: [4/14] tests\test_payment_checkout.py::test_checkout_payment_method_is_atm_only
+2026-08-17 08:55:10 | INFO | pytest | 关闭浏览器驱动

@@ -1,0 +1,18 @@
+INFO     pytest:conftest.py:233 准备浏览器驱动: 默认配置
+INFO     login:login_page.py:49 打开登录页: https://web21.posify.me/fskinandlasersit@9.3.01.2403.0625.21/sc/account/login
+INFO     login:login_page.py:115 开始执行登录操作
+INFO     login:login_page.py:118 输入用户名
+INFO     page:base_page.py:35 查找元素: ('id', 'l-login')
+INFO     page:base_page.py:41 元素已找到: ('id', 'l-login')
+INFO     login:login_page.py:122 输入密码
+INFO     page:base_page.py:35 查找元素: ('id', 'l-password')
+INFO     page:base_page.py:41 元素已找到: ('id', 'l-password')
+INFO     login:login_page.py:126 点击登录按钮
+INFO     page:base_page.py:35 查找元素: ('css selector', 'form#login-form button.login-button')
+INFO     page:base_page.py:41 元素已找到: ('css selector', 'form#login-form button.login-button')
+INFO     login:login_page.py:130 等待登录成功并离开登录页
+INFO     product:product_page.py:32 打开商品详情页: https://web21.posify.me/fskinandlasersit@9.3.01.2403.0625.21/products/Laser+hair+removal+-+Brazilian
+INFO     page:base_page.py:35 查找元素: ('id', 'action-button')
+INFO     page:base_page.py:41 元素已找到: ('id', 'action-button')
+INFO     product:product_page.py:78 登录状态下点击 Proceed Checkout
+INFO     pytest:conftest.py:238 关闭浏览器驱动

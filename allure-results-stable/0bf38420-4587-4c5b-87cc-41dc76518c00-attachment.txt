@@ -1,0 +1,7 @@
+INFO     pytest:conftest.py:233 准备浏览器驱动: 默认配置
+INFO     product:product_page.py:32 打开商品详情页: https://web21.posify.me/fskinandlasersit@9.3.01.2403.0625.21/products/Laser+hair+removal+-+Brazilian
+INFO     page:base_page.py:35 查找元素: ('id', 'sku-price')
+INFO     page:base_page.py:41 元素已找到: ('id', 'sku-price')
+INFO     page:base_page.py:35 查找元素: ('id', 'action-button')
+INFO     page:base_page.py:41 元素已找到: ('id', 'action-button')
+INFO     pytest:conftest.py:238 关闭浏览器驱动
