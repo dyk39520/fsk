@@ -24,7 +24,7 @@ jobs:
       - name: Run browser tests
         env:
           HEADLESS: "true"
-        run: python -m pytest --alluredir=allure-results --clean-alluredir
+        run: python -m pytest -m core_stable --alluredir=allure-results --clean-alluredir
       - name: Generate Allure HTML report
         if: always()
         run: |

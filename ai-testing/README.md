@@ -32,7 +32,7 @@ ai-testing/
 2. 使用 `test-case-writing`、`testcase-writer-plus` 的规则生成核心业务 CSV/XLSX。
 3. 将用例映射为 Selenium Page Object 和 pytest 标记，不重复扩大范围。
 4. 执行时发现 Vue 隐藏购物车、隐藏 radio、慢加载等问题，AI 基于截图和页面源码调整等待与点击策略。
-5. 最终执行结果：`python -m pytest -m core` 共 7 条核心用例通过。
+5. 当前核心业务自动化共 14 条 pytest 用例；部分预约提交/支付成功失败仍受真实环境约束。
 
 核心业务用例 Prompt 见 `prompts/generate-core-business-cases.md`。
 

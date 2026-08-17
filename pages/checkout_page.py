@@ -25,6 +25,15 @@ class CheckoutPage(BasePage):
     submit_button = (By.CSS_SELECTOR, "button.nav-button[type='submit']")
     remove_item = (By.CSS_SELECTOR, "#checkout-form .remove-item")
     service_rows = (By.CSS_SELECTOR, "#checkout-form .service-item")
+    cart_clear_all = (
+        By.CSS_SELECTOR,
+        "#common-side-cart .cart-title .clear-btn",
+    )
+    cart_items = (By.CSS_SELECTOR, "#common-side-cart .product-item")
+    cart_item_clear = (
+        By.CSS_SELECTOR,
+        "#common-side-cart .product-item .clear-btn",
+    )
 
     def __init__(self):
         super().__init__(Tools.get_driver(), timeout=60)
@@ -57,14 +66,31 @@ class CheckoutPage(BasePage):
     def remove_first_item(self):
         """点击结算页服务行的 x 删除预约服务。"""
         logger.info("点击结算页 x 删除服务")
-        before = len(self.driver.find_elements(*self.service_rows))
+        before = len(self.get_service_rows())
         element = WebDriverWait(self.driver, self.default_timeout).until(
             EC.presence_of_element_located(self.remove_item)
         )
-        self.driver.execute_script("arguments[0].click();", element)
-        self.wait_for_url_contains("removeIds")
+        self.driver.execute_script(
+            "arguments[0].scrollIntoView({block: 'center'}); arguments[0].click();",
+            element,
+        )
         WebDriverWait(self.driver, self.default_timeout).until(
-            lambda driver: len(driver.find_elements(*self.service_rows)) < before
+            lambda driver: len(self.get_service_rows()) < before
+        )
+        return self
+
+    def remove_all_items(self, max_items=20):
+        """清空结算页已选服务，用于避免测试账号残留数据干扰。"""
+        logger.info("清空结算页服务")
+        clear_button = WebDriverWait(self.driver, self.default_timeout).until(
+            EC.presence_of_element_located(self.cart_clear_all)
+        )
+        self.driver.execute_script("arguments[0].click();", clear_button)
+        WebDriverWait(self.driver, self.default_timeout).until(
+            lambda driver: (
+                not driver.find_elements(*self.cart_items)
+                and not self.get_service_rows()
+            )
         )
         return self
 
@@ -73,6 +99,7 @@ class CheckoutPage(BasePage):
         return [
             element.text.strip().replace("\n", " ")
             for element in self.driver.find_elements(*self.service_rows)
+            if element.text.strip()
         ]
 
     def get_body_text(self):

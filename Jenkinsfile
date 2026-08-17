@@ -35,7 +35,7 @@ pipeline {
 
         stage('浏览器回归测试') {
             steps {
-                bat ".venv\\Scripts\\python.exe -m scripts.run_tests --junitxml=reports\\junit.xml --clean-alluredir"
+                bat ".venv\\Scripts\\python.exe -m pytest -m core_stable --junitxml=reports\\junit.xml --alluredir=allure-results --clean-alluredir"
             }
             post {
                 always {

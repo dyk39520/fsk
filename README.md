@@ -2,6 +2,17 @@
 
 基于 Python + Selenium + Page Object + Pytest 的自动化测试项目。
 
+## 技术栈
+
+- Python 3.11
+- Selenium 4
+- Pytest 7
+- Allure Report
+- Faker（随机注册数据）
+- openpyxl（Excel 用例文件）
+- Jenkins（每日定时回归）
+- GitHub Actions（PR/推送 CI）
+
 ## 目录结构
 
 ```text
@@ -13,11 +24,13 @@ Po/
 ├─ scripts/         # 脚本
 ├─ data/            # 测试数据
 ├─ ai-testing/      # AI Skills 与 Prompt 示例
+├─ docs/            # README 文档图片
 ├─ logs/            # 日志
 ├─ reports/         # 测试报告
 ├─ screenshots/     # 失败截图
 ├─ allure-results/  # Allure 结果
-└─ .github/         # CI 配置
+├─ Jenkinsfile      # Jenkins 每日定时回归
+└─ .github/         # GitHub Actions CI
 ```
 
 ## AI 测试用例生成
@@ -58,10 +71,36 @@ AI 已按 `ai-testing/skills/core-business-testing.md` 完成核心业务自动�
 - `核心业务测试用例_最终.csv`
 - `核心业务测试用例_最终.xlsx`
 
+## 量化结果
+
+- 注册用例：8 条
+- 登录用例：10 条
+- 预约用例：15 条
+- 支付用例：12 条
+- 商城搜索/详情/购物车/结算：5 条
+- 核心业务用例资产合计：32 条
+- 稳定核心自动化子集：7 条通过，约 4 分 25 秒
+- Jenkins 定时回归：每天 12:00，`cron('0 12 * * *')`
+
+> 真实预约提交、结算页取消、重复预约、支付成功/失败受测试环境限制，默认跳过或条件执行，不写为“全量通过”。
+
+测试用例样例：
+
+```text
+用例编号,用例名称,模块,测试类型,设计方法,优先级,前置条件,测试数据,测试步骤,预期结果,需求追踪,执行状态,备注
+CORE-BOOK-002,选择服务后进入日期时间步骤,预约,功能测试,场景法,P0,已打开免费咨询预约页,选择第一个服务,1. 选择服务；2. 点击 Next；3. 校验日期时间步骤,页面显示 Day and time 和确认入口,预约流程,已自动化,AI 赋能生成
+```
+
 执行核心业务测试：
 
 ```bash
 python -m pytest -m core
+```
+
+执行稳定核心回归：
+
+```bash
+python -m pytest -m core_stable
 ```
 
 只跑某个模块：
@@ -77,6 +116,34 @@ python -m pytest -m payment
 ```bash
 python -m scripts.generate_core_business_cases
 ```
+
+## Jenkins 定时回归
+
+`Jenkinsfile` 已配置每日自动回归一次：
+
+- 触发频率：每天 `12:00`，即 `cron('0 12 * * *')`
+- 执行步骤：创建/复用 `.venv`、安装依赖、语法检查、运行 pytest、生成 Allure 报告
+- 产物归档：`reports/`、`logs/`、`screenshots/`、`allure-results/`
+- 报告发布：HTML Test Report 和 Allure Report
+- 邮件通知：发送到 `3026288915@qq.com`
+
+Jenkins 定时任务默认运行 `core_stable` 稳定核心回归，避免环境受限用例影响定时任务稳定性：
+
+```bash
+.venv\Scripts\python.exe -m pytest -m core_stable --junitxml=reports\junit.xml --alluredir=allure-results --clean-alluredir
+```
+
+如需完整核心回归，可手动执行 `python -m pytest -m core`。
+
+## GitHub Actions CI
+
+`.github/workflows/ci.yml` 会在 push / pull request 时：
+
+1. 安装 Python、Chrome 和 Chromedriver
+2. 安装 `requirements.txt`
+3. 编译 Python 源码
+4. 执行浏览器测试
+5. 生成并上传 Allure 报告和测试产物
 
 ## 环境准备
 
@@ -170,3 +237,15 @@ python -m scripts.run_tests --browser firefox
 python -m pytest --alluredir=allure-results
 allure generate allure-results -o reports/allure-report --clean
 ```
+
+## Allure 报告
+
+本地生成后入口：`reports/allure-report/index.html`
+
+README 中的 Allure 截图：
+
+![Allure Report](docs/allure-report.png)
+
+> 当前截图来自稳定核心回归子集：商城 3 条、预约 2 条、支付 2 条，共 7 条通过。
+> 站点不稳定/环境受限的预约提交、结算页取消、重复预约、支付成功/失败默认跳过或条件执行。
+> 完整 Allure 结果以 `reports/allure-report/index.html` 为准。

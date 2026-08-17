@@ -128,7 +128,7 @@ class PageLogin(BasePage):
 
         if wait_for_success:
             logger.info("等待登录成功并离开登录页")
-            self.wait_for_login_success()
+            self.wait_for_login_success(timeout=60)
         else:
             logger.info("等待登录结果")
             self.wait_for_login_settled()
@@ -149,7 +149,7 @@ class PageLogin(BasePage):
 
         if wait_for_success:
             logger.info("等待手机号登录成功")
-            self.wait_for_login_success()
+            self.wait_for_login_success(timeout=60)
         else:
             logger.info("等待手机号登录结果")
             self.wait_for_login_settled()

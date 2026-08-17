@@ -25,9 +25,9 @@ def _reload_data_modules():
 def test_login_cases_read_from_csv():
     cases = load_cases(LOGIN_CASES_FILE)
 
-    assert len(cases) == 4
-    assert len(LOGIN_SUCCESS_DATA) == 1
-    assert len(LOGIN_FAILED_DATA) == 3
+    assert len(cases) == 10
+    assert len(LOGIN_SUCCESS_DATA) == 2
+    assert len(LOGIN_FAILED_DATA) == 8
     assert LOGIN_SUCCESS_DATA[0]["username"] == "3026288915@qq.com"
     assert LOGIN_FAILED_DATA[-1]["password"] == ""
     assert all(case.get("execute") for case in cases)

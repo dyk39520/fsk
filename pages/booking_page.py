@@ -110,14 +110,14 @@ class BookingPage(BasePage):
     def click_proceed_to_checkout(self):
         """点击前往确认，进入预约确认/结算页。"""
         logger.info("点击前往确认")
-        self.base_click(self.proceed_button)
+        self.click_via_js(self.proceed_button)
         self.wait_for_url_contains("/checkout")
         return self
 
     def click_proceed_button(self):
         """仅点击前往确认，不等待跳转；用于校验拦截场景。"""
         logger.info("点击前往确认（不等待跳转）")
-        self.base_click(self.proceed_button)
+        self.click_via_js(self.proceed_button)
         return self
 
     def click_back(self):

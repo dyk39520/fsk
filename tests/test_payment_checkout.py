@@ -7,6 +7,7 @@ from pages.product_page import ProductPage
 
 
 @pytest.mark.core
+@pytest.mark.core_stable
 @pytest.mark.payment
 def test_checkout_payment_method_is_atm_only(login_page):
     """当前站点支付方式应只有 ATM，符合到店/ATM 单一支付配置。"""
@@ -21,6 +22,7 @@ def test_checkout_payment_method_is_atm_only(login_page):
 
 
 @pytest.mark.core
+@pytest.mark.core_stable
 @pytest.mark.payment
 def test_checkout_amount_calculation(login_page):
     """商品加入购物车后结算页应付金额应与单价一致。"""

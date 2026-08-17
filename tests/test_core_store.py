@@ -4,6 +4,7 @@ import pytest
 
 
 @pytest.mark.core
+@pytest.mark.core_stable
 @pytest.mark.store
 def test_search_returns_laser_products(public_home_page):
     """按核心关键词搜索后应展示商品结果。"""
@@ -13,6 +14,7 @@ def test_search_returns_laser_products(public_home_page):
 
 
 @pytest.mark.core
+@pytest.mark.core_stable
 @pytest.mark.store
 def test_product_detail_add_to_cart(product_page):
     """商品详情加入购物车后小计应等于商品单价。"""
@@ -22,6 +24,7 @@ def test_product_detail_add_to_cart(product_page):
 
 
 @pytest.mark.core
+@pytest.mark.core_stable
 @pytest.mark.store
 def test_member_checkout_requires_login(product_page):
     """会员专属商品结算应引导用户登录。"""
