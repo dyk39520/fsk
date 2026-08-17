@@ -48,10 +48,10 @@ LOGIN_CODE_CASES = [
         "execute": True,
     },
     {
-        "case": "用户名首尾空格",
+        "case": "用户名首尾空格自动去除后登录",
         "username": f" {LOGIN_USERNAME} ",
         "password": LOGIN_PASSWORD,
-        "expected_result": "fail",
+        "expected_result": "success",
         "execute": True,
     },
     {

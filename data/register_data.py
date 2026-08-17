@@ -73,7 +73,7 @@ REGISTER_CODE_CASES = [
     {
         "case": "手机号已注册",
         "email": "RANDOM",
-        "mobile": "123",
+        "mobile": "13414764310",
         "password": DEFAULT_PASSWORD,
         "re_password": DEFAULT_PASSWORD,
         "first_name": "自动化",

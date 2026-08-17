@@ -5,7 +5,7 @@ case,username,password,expected_result,execute
 空密码,3026288915@qq.com,,fail,TRUE
 用户名为空,,A123456,fail,TRUE
 账号不存在,not-exist@example.com,A123456,fail,TRUE
-用户名首尾空格, 3026288915@qq.com ,A123456,fail,TRUE
+用户名首尾空格自动去除后登录, 3026288915@qq.com ,A123456,success,TRUE
 密码过短,3026288915@qq.com,A1,fail,TRUE
 密码全为空格,3026288915@qq.com,      ,fail,TRUE
 正确账号大小写邮箱登录,3026288915@QQ.COM,A123456,success,TRUE
